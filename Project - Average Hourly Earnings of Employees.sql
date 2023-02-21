@@ -1,4 +1,4 @@
---CHECK FOR ANY DUPLICATES TABLE 1
+--CHECK FOR ANY DUPLICATES 
 WITH CTE_row_num1 AS
 (
 SELECT *,
@@ -15,28 +15,6 @@ FROM Project_AverageEarning..average_hourly_earnings
 SELECT DISTINCT (row_num1),COUNT(row_num1)
 FROM CTE_row_num1
 GROUP BY row_num1
-
-
---CHECK FOR ANY DUPLICATES TABLE 2
-WITH CTE_row_num2 AS
-(
-SELECT *,
-	ROW_NUMBER() OVER (
-	PARTITION BY Country,
-				 Code,
-				 Year,
-				 Average_Hourly_Earnings_of_Men,
-				 Average_Hourly_Earnings_of_Women,
-				 Population,
-				 Continent
-				 ORDER BY Code
-				 ) AS row_num2
-FROM Project_AverageEarning..average_hourly_earnings_by_gender
-)
-
-SELECT DISTINCT (row_num2),COUNT(row_num2)
-FROM CTE_row_num2
-GROUP BY row_num2
 
 
 --CHECK AND DELETE ROWS WITH EMPTY DATA
@@ -73,7 +51,6 @@ DROP COLUMN AvgSalary
 
 
 --PLOT OF AVG SALARY BY YEAR FOR SELECTED COUNTRIES
-
 SELECT Country, Year, Average_Hourly_Earnings
 FROM Project_AverageEarning..average_hourly_earnings
 GROUP BY Country, Year, Average_Hourly_Earnings
