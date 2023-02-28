@@ -1,4 +1,4 @@
---CHECK FOR ANY DUPLICATES TABLE 1
+--CHECK FOR ANY DUPLICATES 
 WITH CTE_row_num1 AS
 (
 SELECT *,
@@ -17,7 +17,7 @@ FROM CTE_row_num1
 GROUP BY row_num1
 
 
---CHECK AND DELETE ROWS WITH EMPTY DATA FOR TABLE 1
+--CHECK AND DELETE ROWS WITH EMPTY DATA 
 SELECT COUNT(Country), COUNT(Code), COUNT(Year), COUNT(Average_Hourly_Earnings)
 FROM Project_AverageEarning..average_hourly_earnings
 
